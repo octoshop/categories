@@ -28,6 +28,7 @@ class Plugin extends PluginBase
         $this->extendBackendList();
         $this->extendBackendMenu();
 
+        $this->extendComponents();
         $this->extendControllers();
         $this->extendModels();
     }
@@ -82,6 +83,38 @@ class Plugin extends PluginBase
                     'order'       => 100,
                 ],
             ]);
+        });
+    }
+
+    public function extendComponents()
+    {
+        Event::listen('octoshop.core.extendComponents', function($plugin) {
+            $plugin->addComponents([
+                'Octoshop\Treecat\Components\Categories' => 'shopCategories',
+            ]);
+        });
+
+        Event::listen('octoshop.core.extendProductsComponent', function($component) {
+            $component->addProperties([
+                'category' => [
+                    'title'       => 'Category',
+                    'description' => 'Category to filter the products by. Leave blank to show all products.',
+                    'type'        => 'string',
+                    'default'     => '{{ :slug }}'
+                ],
+            ]);
+
+            $component->registerFilter('category', function($query) use ($component) {
+                $category = $component->property('category');
+
+                if (!$category) {
+                    return $query;
+                }
+
+                return $query->whereHas('categories', function($q) use ($category) {
+                    $q->whereSlug($category);
+                });
+            });
         });
     }
 
