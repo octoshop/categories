@@ -1,1 +1,3 @@
-1.0.0: Birth of Octoshop TreeCat
+1.0.0:
+    - Birth of Octoshop TreeCat
+    - create_categories_table.php

@@ -1,0 +1,31 @@
+<?= $this->listRender() ?>
+
+<div class="modal fade" id="reorder-modal" tabindex="-1" role="dialog" aria-labelledby="reorder-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="reorder-modal-label">Rearrange Categories</h4>
+            </div>
+            <div class="modal-body" id="reorder-modal-form">
+                <div id="category-sorter"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" id="reorder-modal-close"
+                        data-dismiss="modal" data-request="onRefresh">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/modules/backend/behaviors/reordercontroller/assets/js/october.reorder.js"></script>
+<script>
+    $(window).ready(function() {
+        $('#category-sorter').load('categories/reorder #layout-body', function() {
+            $('[data-control="treelist"]').treeListWidget();
+            $.oc.reorderBehavior.initSorting('nested');
+        });
+    });
+</script>

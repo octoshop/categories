@@ -1,0 +1,41 @@
+# Model List Column configuration
+list: $/octoshop/treecat/models/category/columns.yaml
+
+# Model Class name
+modelClass: Octoshop\Treecat\Models\Category
+
+# List Title
+title: Manage Categories
+
+# Link URL for each record
+recordUrl: octoshop/treecat/categories/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 25
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the categories in a tree format
+showTree: true
+
+# Automatically expand the category tree nodes
+treeExpanded: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Display checkboxes next to each record
+showCheckboxes: false
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt

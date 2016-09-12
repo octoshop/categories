@@ -1,0 +1,3 @@
+title: Sort Categories
+nameFrom: title
+modelClass: Octoshop\Treecat\Models\Category
