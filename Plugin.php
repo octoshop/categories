@@ -3,6 +3,7 @@
 use Backend;
 use Event;
 use Backend\Classes\FormTabs;
+use Octoshop\Core\Components\Products as ProductList;
 use Octoshop\Core\Controllers\Products;
 use Octoshop\Core\Models\Product;
 use System\Classes\PluginBase;
@@ -94,7 +95,7 @@ class Plugin extends PluginBase
             ]);
         });
 
-        Event::listen('octoshop.core.extendProductsComponent', function($component) {
+        ProductList::extend(function($component) {
             $component->addProperties([
                 'category' => [
                     'title'       => 'Category',
@@ -104,17 +105,7 @@ class Plugin extends PluginBase
                 ],
             ]);
 
-            $component->registerFilter('category', function($query) use ($component) {
-                $category = $component->property('category');
-
-                if (!$category) {
-                    return $query;
-                }
-
-                return $query->whereHas('categories', function($q) use ($category) {
-                    $q->whereSlug($category);
-                });
-            });
+            $component->registerFilter('category', 'inCategory');
         });
     }
 
@@ -135,6 +126,12 @@ class Plugin extends PluginBase
                 'table' => 'octoshop_categories_products',
                 'order' => 'name',
             ];
+
+            $model->addDynamicMethod('scopeInCategory', function($query, $category) use ($model) {
+                return $query->whereHas('categories', function($q) use ($category) {
+                    $q->whereSlug($category);
+                });
+            });
         });
     }
 }
