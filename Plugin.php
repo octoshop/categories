@@ -6,6 +6,7 @@ use Backend\Classes\FormTabs;
 use Octoshop\Core\Components\Products as ProductList;
 use Octoshop\Core\Controllers\Products;
 use Octoshop\Core\Models\Product;
+use Octoshop\Treecat\Models\Category;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -106,6 +107,14 @@ class Plugin extends PluginBase
             ]);
 
             $component->registerFilter('category', 'inCategory');
+
+            $component->registerVar('category', function() use ($component) {
+                if (!$slug = $component->property('category')) {
+                    return null;
+                }
+
+                return Category::findBySlug($slug);
+            });
         });
     }
 

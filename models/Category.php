@@ -110,6 +110,18 @@ class Category extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
+    public function scopeFindBySlug($q, $slug)
+    {
+        if (strpos($slug, '.') !== false) {
+            $parts = explode('.', $slug);
+            $slug = array_pop($parts);
+        }
+
+        $category = $q->whereSlug($slug);
+
+        return $category ? $category->first() : null;
+    }
+
     public function scopeEnabled($q)
     {
         return $q->whereIsEnabled(true);
