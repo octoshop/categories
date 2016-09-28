@@ -132,7 +132,7 @@ class Plugin extends PluginBase
     {
         Product::extend(function($model) {
             $model->belongsToMany['categories'] = ['Octoshop\Treecat\Models\Category',
-                'table' => 'octoshop_categories_products',
+                'table' => 'octoshop_product_categories',
                 'order' => 'name',
             ];
 

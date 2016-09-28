@@ -52,7 +52,7 @@ class Category extends Model
      */
     public $belongsToMany = [
         'products' => ['Octoshop\Core\Models\Product',
-            'table' => 'octoshop_categories_products',
+            'table' => 'octoshop_product_categories',
             'order' => 'available_at desc',
         ],
     ];

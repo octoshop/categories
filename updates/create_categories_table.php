@@ -1,6 +1,7 @@
 <?php namespace Octoshop\Core\Updates;
 
 use Schema;
+use Octoshop\Core\Updates\Migration;
 
 class CreateCategoriesTable extends Migration
 {
@@ -21,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('octoshop_categories_products', function ($table) {
+        Schema::create('octoshop_product_categories', function ($table) {
             $table->integer('product_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
@@ -33,6 +34,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('octoshop_categories');
-        Schema::dropIfExists('octoshop_categories_products');
+        Schema::dropIfExists('octoshop_product_categories');
     }
 }
