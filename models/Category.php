@@ -7,12 +7,13 @@ class Category extends Model
     use \October\Rain\Database\Traits\NestedTree;
     use \October\Rain\Database\Traits\Purgeable;
     use \October\Rain\Database\Traits\Validation;
+    use \Octoshop\Core\Util\UrlMaker;
 
     public $is_subcategory;
 
     public $title;
 
-    public $url;
+    public $urlComponentName = 'shopCategories';
 
     /**
      * @var string The database table used by the model.
@@ -110,14 +111,19 @@ class Category extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
-    public function scopeFindBySlug($q, $slug)
+    public function parseSlug($slug)
     {
         if (strpos($slug, '.') !== false) {
             $parts = explode('.', $slug);
             $slug = array_pop($parts);
         }
 
-        $category = $q->whereSlug($slug);
+        return $slug;
+    }
+
+    public function scopeFindBySlug($q, $slug)
+    {
+        $category = $q->whereSlug($this->parseSlug($slug));
 
         return $category ? $category->first() : null;
     }

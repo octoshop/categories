@@ -137,8 +137,27 @@ class Plugin extends PluginBase
             ];
 
             $model->addDynamicMethod('scopeInCategory', function($query, $category) use ($model) {
-                return $query->whereHas('categories', function($q) use ($category) {
-                    $q->whereSlug($category);
+                if (!$category) {
+                    return $query->whereDoesntHave('categories');
+                }
+
+                if ($category instanceof Category) {
+                    $category = $category->id;
+                }
+
+                if (!is_numeric($category)) {
+                    return $query->whereHas('categories', function($q) use ($category) {
+                        $model = new Category;
+                        $q->whereSlug($model->parseSlug($category));
+                    });
+                }
+
+                return $query->inCategories([$category]);
+            });
+
+            $model->addDynamicMethod('scopeInCategories', function($query, array $categories, $column = 'id') use ($model) {
+                return $query->whereHas('categories', function($q) use ($categories, $column) {
+                    $q->whereIn($column, $categories);
                 });
             });
         });

@@ -31,6 +31,10 @@ class Categories extends ComponentBase
                 'default'     => 'shop/category',
                 'group'       => 'Links',
             ],
+            'isPrimary' => [
+                'title' => 'Use for URLs?',
+                'type'  => 'checkbox',
+            ],
         ];
     }
 
