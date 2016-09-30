@@ -67,16 +67,13 @@ class Categories extends ComponentBase
         }
 
         return $this->fillExtraData(
-            $categories->getNested(),
-            $this->controller->pageUrl($this->categoryPage, false)
+            $categories->getNested()
         );
     }
 
-    public function fillExtraData($categories, $baseUrl, $rootCategory = true)
+    public function fillExtraData($categories, $rootCategory = true)
     {
-        return $categories->each(function ($c) use ($baseUrl, $rootCategory) {
-            $c->url = $baseUrl.($rootCategory ? '/' : '.').$c->slug;
-
+        return $categories->each(function ($c) use ($rootCategory) {
             if (!$this->inheritChildCount) {
                 $c->productCount = count($c->products);
             } else {
@@ -99,7 +96,7 @@ class Categories extends ComponentBase
             }
 
             if ($c->children) {
-                $c->children = $this->fillExtraData($c->children, $c->url, false);
+                $c->children = $this->fillExtraData($c->children, false);
             }
         });
     }
