@@ -1,8 +1,8 @@
 <?php namespace Octoshop\Treecat\Components;
 
 use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
 use Octoshop\Treecat\Models\Category;
+use Octoshop\Core\Components\ComponentBase;
 use Octoshop\Core\Models\Product;
 
 class Categories extends ComponentBase
@@ -52,8 +52,8 @@ class Categories extends ComponentBase
     {
         $this->inheritChildCount = false;
 
-        $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
-        $this->categories   = $this->page['categories']   = $this->listCategories();
+        $this->setPageProp('categoryPage');
+        $this->setPageProp('categories', $this->listCategories());
     }
 
     public function listCategories()
