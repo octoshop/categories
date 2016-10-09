@@ -6,8 +6,10 @@ use Backend\Classes\FormTabs;
 use Octoshop\Core\Components\Products as ProductList;
 use Octoshop\Core\Controllers\Products;
 use Octoshop\Core\Models\Product;
+use Octoshop\Core\Models\ShopSetting;
 use Octoshop\Treecat\Models\Category;
 use System\Classes\PluginBase;
+use System\Controllers\Settings;
 
 class Plugin extends PluginBase
 {
@@ -38,18 +40,28 @@ class Plugin extends PluginBase
     public function extendBackendForm()
     {
         Event::listen('backend.form.extendFields', function($widget) {
-            if (!($widget->getController() instanceof Products)
-             || !($widget->model instanceof Product)) {
-                return;
+            if ($widget->getController() instanceof Products && $widget->model instanceof Product) {
+                $widget->addFields([
+                    'categories' => [
+                        'tab' => 'Categories',
+                        'type' => 'partial',
+                        'path' => '$/octoshop/treecat/controllers/products/_field_categories.htm',
+                    ],
+                ], FormTabs::SECTION_SECONDARY);
             }
+        });
 
-            $widget->addFields([
-                'categories' => [
-                    'tab' => 'Categories',
-                    'type' => 'partial',
-                    'path' => '$/octoshop/treecat/controllers/products/_field_categories.htm',
-                ],
-            ], FormTabs::SECTION_SECONDARY);
+        Event::listen('backend.form.extendFields', function($form) {
+            if ($form->getController() instanceof Settings && $form->model instanceof ShopSetting) {
+                $form->addTabFields([
+                    'inherit_child_count' => [
+                        'label' => 'Inherit product count from subcategories',
+                        'comment' => 'Products from subcategories will count toward the number of products in each parent category. Products are only counted once for each category.',
+                        'type' => 'switch',
+                        'tab' => 'Categories',
+                    ],
+                ]);
+            }
         });
     }
 
@@ -121,6 +133,7 @@ class Plugin extends PluginBase
     public function extendControllers()
     {
         Products::extend(function($controller) {
+            // TODO: There's probably a better non-blocking way to add relations. Use it.
             $controller->addDynamicProperty('relationConfig', '$/octoshop/treecat/controllers/products/config_relation.yaml');
             $controller->implement[] = 'Backend.Behaviors.RelationController';
 

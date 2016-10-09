@@ -4,6 +4,7 @@ use Cms\Classes\Page;
 use Octoshop\Treecat\Models\Category;
 use Octoshop\Core\Components\ComponentBase;
 use Octoshop\Core\Models\Product;
+use Octoshop\Core\Models\ShopSetting;
 
 class Categories extends ComponentBase
 {
@@ -50,7 +51,7 @@ class Categories extends ComponentBase
 
     public function prepareVars()
     {
-        $this->inheritChildCount = false;
+        $this->inheritChildCount = ShopSetting::get('inherit_child_count', false);
 
         $this->setPageProp('categoryPage');
         $this->setPageProp('categories', $this->listCategories());
