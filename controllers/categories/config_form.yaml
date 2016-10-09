@@ -21,4 +21,3 @@ update:
     title: Edit Category
     redirect: octoshop/treecat/categories
     redirectClose: octoshop/treecat/categories
-    title: Preview Category

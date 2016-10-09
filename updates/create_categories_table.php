@@ -2,12 +2,13 @@
 
 use Schema;
 use Octoshop\Core\Updates\Migration;
+use October\Rain\Database\Schema\Blueprint;
 
 class CreateCategoriesTable extends Migration
 {
     public function up()
     {
-        Schema::create('octoshop_categories', function ($table) {
+        Schema::create('octoshop_categories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->index();
@@ -22,7 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('octoshop_product_categories', function ($table) {
+        Schema::create('octoshop_product_categories', function (Blueprint $table) {
             $table->integer('product_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();
