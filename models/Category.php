@@ -71,6 +71,13 @@ class Category extends Model
         'secondary_image' => ['System\Models\File'],
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        +$this->setUrlPageName('browse.htm');
+    }
+
     public function afterFetch()
     {
         // Set the dummy is_subcategory value for the backend switch
@@ -99,16 +106,6 @@ class Category extends Model
         }
 
         $this->storeNewParent();
-    }
-
-    public function setUrl($pageName, $controller)
-    {
-        $params = [
-            'id' => $this->id,
-            'slug' => $this->slug,
-        ];
-
-        return $this->url = $controller->pageUrl($pageName, $params);
     }
 
     public function parseSlug($slug)
