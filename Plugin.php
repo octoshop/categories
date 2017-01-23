@@ -26,6 +26,16 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerPermissions()
+    {
+        return [
+            'octoshop.core.access_categories' => [
+                'tab' => 'octoshop.core::lang.plugin.name',
+                'label' => 'octoshop.treecat::lang.permissions.categories',
+            ],
+        ];
+    }
+
     public function boot()
     {
         $this->extendBackendForm();
@@ -95,6 +105,7 @@ class Plugin extends PluginBase
                     'url'         => Backend::url('octoshop/treecat/categories'),
                     'icon'        => 'icon-folder-o',
                     'order'       => 100,
+                    'permissions' => ['octoshop.core.access_categories'],
                 ],
             ]);
         });

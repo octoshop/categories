@@ -15,6 +15,8 @@ class Categories extends Controller
     public $listConfig = 'config_list.yaml';
     public $reorderConfig = 'config_reorder.yaml';
 
+    public $requiredPermissions = ['octoshop.core.access_categories'];
+
     public $bodyClass = 'compact-container';
 
     protected $assetsPath = '/plugins/octoshop/treecat/assets';
