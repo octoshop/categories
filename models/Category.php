@@ -1,4 +1,4 @@
-<?php namespace Octoshop\Treecat\Models;
+<?php namespace Octoshop\Categories\Models;
 
 use Model;
 
@@ -58,7 +58,7 @@ class Category extends Model
         ],
     ];
     public $belongsTo = [
-        'parent' => ['Octoshop\TreeCat\Models\Category', 'key' => 'parent_id'],
+        'parent' => ['Octoshop\Categories\Models\Category', 'key' => 'parent_id'],
     ];
 
     /**

@@ -1,4 +1,4 @@
-<?php namespace Octoshop\Treecat\Controllers;
+<?php namespace Octoshop\Categories\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -19,7 +19,7 @@ class Categories extends Controller
 
     public $bodyClass = 'compact-container';
 
-    protected $assetsPath = '/plugins/octoshop/treecat/assets';
+    protected $assetsPath = '/plugins/octoshop/categories/assets';
 
     public function __construct()
     {

@@ -1,10 +1,10 @@
 categories:
     label: Category
     view:
-        list: $/octoshop/treecat/models/category/columns.yaml
+        list: $/octoshop/categories/models/category/columns.yaml
         toolbarButtons: create|add|remove
     manage:
         showSearch: true
         recordsPerPage: 10
-        list: $/octoshop/treecat/models/category/columns.yaml
-        form: $/octoshop/treecat/models/category/fields.yaml
+        list: $/octoshop/categories/models/category/columns.yaml
+        form: $/octoshop/categories/models/category/fields.yaml

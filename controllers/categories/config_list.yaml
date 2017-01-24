@@ -1,14 +1,14 @@
 # Model List Column configuration
-list: $/octoshop/treecat/models/category/columns.yaml
+list: $/octoshop/categories/models/category/columns.yaml
 
 # Model Class name
-modelClass: Octoshop\Treecat\Models\Category
+modelClass: Octoshop\Categories\Models\Category
 
 # List Title
 title: Manage Categories
 
 # Link URL for each record
-recordUrl: octoshop/treecat/categories/update/:id
+recordUrl: octoshop/categories/categories/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

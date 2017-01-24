@@ -15,7 +15,7 @@ fields:
 
     toolbar:
         type: partial
-        path: $/octoshop/treecat/controllers/categories/_form_toolbar.htm
+        path: $/octoshop/categories/controllers/categories/_form_toolbar.htm
         cssClass: collapse-visible
 
 secondaryTabs:

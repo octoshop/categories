@@ -2,22 +2,22 @@
 name: Category
 
 # Model Form Field configuration
-form: $/octoshop/treecat/models/category/fields.yaml
+form: $/octoshop/categories/models/category/fields.yaml
 
 # Model Class name
-modelClass: Octoshop\Treecat\Models\Category
+modelClass: Octoshop\Categories\Models\Category
 
 # Default redirect location
-defaultRedirect: octoshop/treecat/categories
+defaultRedirect: octoshop/categories/categories
 
 # Create page
 create:
     title: Create Category
-    redirect: octoshop/treecat/categories/update/:id
-    redirectClose: octoshop/treecat/categories
+    redirect: octoshop/categories/categories/update/:id
+    redirectClose: octoshop/categories/categories
 
 # Update page
 update:
     title: Edit Category
-    redirect: octoshop/treecat/categories
-    redirectClose: octoshop/treecat/categories
+    redirect: octoshop/categories/categories
+    redirectClose: octoshop/categories/categories

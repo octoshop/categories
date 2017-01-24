@@ -1,4 +1,4 @@
-<?php namespace Octoshop\Core\Updates;
+<?php namespace Octoshop\Categories\Updates;
 
 use Schema;
 use Octoshop\Core\Updates\Migration;

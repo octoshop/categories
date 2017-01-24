@@ -1,13 +1,13 @@
-<?php namespace Octoshop\TreeCat;
+<?php namespace Octoshop\Categories;
 
 use Backend;
 use Event;
 use Backend\Classes\FormTabs;
+use Octoshop\Categories\Models\Category;
 use Octoshop\Core\Components\Products as ProductList;
 use Octoshop\Core\Controllers\Products;
 use Octoshop\Core\Models\Product;
 use Octoshop\Core\Models\ShopSetting;
-use Octoshop\Treecat\Models\Category;
 use System\Classes\PluginBase;
 use System\Controllers\Settings;
 
@@ -18,11 +18,11 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'octoshop.treecat::lang.plugin.name',
+            'name' => 'octoshop.categories::lang.plugin.name',
             'icon' => 'icon-shopping-cart',
             'author' => 'Dave Shoreman',
             'homepage' => 'http://octoshop.co/',
-            'description' => 'octoshop.treecat::lang.plugin.description',
+            'description' => 'octoshop.categories::lang.plugin.description',
         ];
     }
 
@@ -31,7 +31,7 @@ class Plugin extends PluginBase
         return [
             'octoshop.core.access_categories' => [
                 'tab' => 'octoshop.core::lang.plugin.name',
-                'label' => 'octoshop.treecat::lang.permissions.categories',
+                'label' => 'octoshop.categories::lang.permissions.categories',
             ],
         ];
     }
@@ -55,7 +55,7 @@ class Plugin extends PluginBase
                     'categories' => [
                         'tab' => 'Categories',
                         'type' => 'partial',
-                        'path' => '$/octoshop/treecat/controllers/products/_field_categories.htm',
+                        'path' => '$/octoshop/categories/controllers/products/_field_categories.htm',
                     ],
                 ], FormTabs::SECTION_SECONDARY);
             }
@@ -102,7 +102,7 @@ class Plugin extends PluginBase
             $manager->addSideMenuItems('Octoshop.Core', 'octoshop', [
                 'categories' => [
                     'label'       => 'Categories',
-                    'url'         => Backend::url('octoshop/treecat/categories'),
+                    'url'         => Backend::url('octoshop/categories/categories'),
                     'icon'        => 'icon-folder-o',
                     'order'       => 100,
                     'permissions' => ['octoshop.core.access_categories'],
@@ -115,7 +115,7 @@ class Plugin extends PluginBase
     {
         Event::listen('octoshop.core.extendComponents', function($plugin) {
             $plugin->addComponents([
-                'Octoshop\Treecat\Components\Categories' => 'shopCategories',
+                'Octoshop\Categories\Components\Categories' => 'shopCategories',
             ]);
         });
 
@@ -145,17 +145,17 @@ class Plugin extends PluginBase
     {
         Products::extend(function($controller) {
             // TODO: There's probably a better non-blocking way to add relations. Use it.
-            $controller->addDynamicProperty('relationConfig', '$/octoshop/treecat/controllers/products/config_relation.yaml');
+            $controller->addDynamicProperty('relationConfig', '$/octoshop/categories/controllers/products/config_relation.yaml');
             $controller->implement[] = 'Backend.Behaviors.RelationController';
 
-            $controller->addCss('/plugins/octoshop/treecat/assets/css/modal-form.css');
+            $controller->addCss('/plugins/octoshop/categories/assets/css/modal-form.css');
         });
     }
 
     public function extendModels()
     {
         Product::extend(function($model) {
-            $model->belongsToMany['categories'] = ['Octoshop\Treecat\Models\Category',
+            $model->belongsToMany['categories'] = ['Octoshop\Categories\Models\Category',
                 'table' => 'octoshop_product_categories',
                 'order' => 'name',
             ];
