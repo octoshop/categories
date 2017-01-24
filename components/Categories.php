@@ -1,5 +1,6 @@
 <?php namespace Octoshop\Categories\Components;
 
+use Lang;
 use Cms\Classes\Page;
 use Octoshop\Categories\Models\Category;
 use Octoshop\Core\Components\ComponentBase;
@@ -17,8 +18,8 @@ class Categories extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Category List',
-            'description' => 'Displays a list of shop categories on the page.',
+            'name'        => Lang::get('octoshop.categories::lang.component.name'),
+            'description' => Lang::get('octoshop.categories::lang.component.description'),
         ];
     }
 
@@ -26,14 +27,14 @@ class Categories extends ComponentBase
     {
         return [
             'categoryPage' => [
-                'title'       => 'Category page',
-                'description' => 'The name of the page to use when generating category links.',
+                'title'       => Lang::get('octoshop.categories::lang.component.categoryPage'),
+                'description' => Lang::get('octoshop.categories::lang.component.categoryPage_description'),
                 'type'        => 'dropdown',
                 'default'     => 'shop/category',
                 'group'       => 'Links',
             ],
             'isPrimary' => [
-                'title' => 'Use for URLs?',
+                'title' => Lang::get('octoshop.categories::lang.component.isPrimary'),
                 'type'  => 'checkbox',
             ],
         ];

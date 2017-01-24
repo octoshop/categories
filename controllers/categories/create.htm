@@ -13,7 +13,7 @@
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
     <p>
         <a href="<?= Backend::url('octoshop/categories/categories') ?>" class="btn btn-default">
-            Return to categories list
+            <?= e(trans('octoshop.categories::lang.categories.return_link')) ?>
         </a>
     </p>
 

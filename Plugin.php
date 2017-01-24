@@ -53,7 +53,7 @@ class Plugin extends PluginBase
             if ($widget->getController() instanceof Products && $widget->model instanceof Product) {
                 $widget->addFields([
                     'categories' => [
-                        'tab' => 'Categories',
+                        'tab' => 'octoshop.categories::lang.product.categories',
                         'type' => 'partial',
                         'path' => '$/octoshop/categories/controllers/products/_field_categories.htm',
                     ],
@@ -65,10 +65,10 @@ class Plugin extends PluginBase
             if ($form->getController() instanceof Settings && $form->model instanceof ShopSetting) {
                 $form->addTabFields([
                     'inherit_child_count' => [
-                        'label' => 'Inherit product count from subcategories',
-                        'comment' => 'Products from subcategories will count toward the number of products in each parent category. Products are only counted once for each category.',
+                        'label' => 'octoshop.categories::lang.settings.inheritChildCount',
+                        'comment' => 'octoshop.categories::lang.settings.inheritChildCount_comment',
                         'type' => 'switch',
-                        'tab' => 'Categories',
+                        'tab' => 'octoshop.categories::lang.product.categories',
                     ],
                 ]);
             }
@@ -85,7 +85,7 @@ class Plugin extends PluginBase
 
             $widget->addColumns([
                 'category' => [
-                    'label' => 'Categories',
+                    'label' => 'octoshop.categories::lang.product.categories',
                     'relation' => 'categories',
                     'select' => 'name',
                     'searchable' => true,
@@ -101,7 +101,7 @@ class Plugin extends PluginBase
         Event::listen('backend.menu.extendItems', function($manager) {
             $manager->addSideMenuItems('Octoshop.Core', 'octoshop', [
                 'categories' => [
-                    'label'       => 'Categories',
+                    'label'       => 'octoshop.categories::lang.plugin.menu',
                     'url'         => Backend::url('octoshop/categories/categories'),
                     'icon'        => 'icon-folder-o',
                     'order'       => 100,
@@ -122,8 +122,8 @@ class Plugin extends PluginBase
         ProductList::extend(function($component) {
             $component->addProperties([
                 'category' => [
-                    'title'       => 'Category',
-                    'description' => 'Category to filter the products by. Leave blank to show all products.',
+                    'title'       => 'octoshop.categories::lang.product.category',
+                    'description' => 'octoshop.categories::lang.product.category_description',
                     'type'        => 'string',
                     'default'     => '{{ :slug }}'
                 ],

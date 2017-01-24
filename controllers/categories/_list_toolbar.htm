@@ -1,9 +1,9 @@
 <div data-control="toolbar">
-    <a href="<?= Backend::url('octoshop/categories/categories/create') ?>" class="btn btn-primary oc-icon-plus">New Category</a>
+    <a href="<?= Backend::url('octoshop/categories/categories/create') ?>" class="btn btn-primary oc-icon-plus"><?= e(trans('octoshop.categories::lang.categories.create_button')) ?></a>
     <button type="button"
             class="btn btn-default"
             data-toggle="modal"
             data-target="#reorder-modal">
-        <i class="oc-icon oc-icon-exchange"></i> Rearrange Categories
+        <i class="oc-icon oc-icon-exchange"></i> <?= e(trans('octoshop.categories::lang.categories.sort_button')) ?>
     </button>
 </div>

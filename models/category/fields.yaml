@@ -1,12 +1,12 @@
 fields:
     name:
-        label: Name
+        label: octoshop.categories::lang.categories.name
         span: left
         placeholder: Category name
         required: true
 
     slug:
-        label: Slug
+        label: octoshop.categories::lang.categories.slug
         span: right
         required: true
         preset:
@@ -19,7 +19,7 @@ fields:
         cssClass: collapse-visible
 
 secondaryTabs:
-    defaultTab: Manage
+    defaultTab: octoshop.categories::lang.categories.defaultTab
     fields:
 
         description:
@@ -28,22 +28,22 @@ secondaryTabs:
             size: giant
 
         is_enabled:
-            label: Enable category
+            label: octoshop.categories::lang.categories.isEnabled
             span: right
             type: switch
 
         is_visible:
-            label: Show in menus
+            label: octoshop.categories::lang.categories.isVisible
             span: right
             type: switch
 
         is_subcategory:
-            label: Make it a subcategory?
+            label: octoshop.categories::lang.categories.isSubcategory
             span: right
             type: switch
 
         parent:
-            label: Parent Category
+            label: octoshop.categories::lang.categories.parent
             span: right
             type: relation
             cssClass: checkbox-align
@@ -53,14 +53,14 @@ secondaryTabs:
                 condition: checked
 
         secondary_image:
-            label: Secondary image
+            label: octoshop.categories::lang.categories.secondaryImage
             span: right
             cssClass: half-width
             type: fileupload
             mode: image
 
         primary_image:
-            label: Primary image
+            label: octoshop.categories::lang.categories.primaryImage
             span: right
             cssClass: half-width noclear
             type: fileupload

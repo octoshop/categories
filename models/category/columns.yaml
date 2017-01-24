@@ -1,20 +1,20 @@
 columns:
     id:
-        label: ID
+        label: octoshop.categories::lang.categories.id
         searchable: true
     name:
-        label: Title
+        label: octoshop.categories::lang.categories.name
         searchable: true
     slug:
-        label: Slug
+        label: octoshop.categories::lang.categories.slug
         searchable: false
     is_enabled:
-        label: Enabled
+        label: octoshop.categories::lang.categories.isEnabled
         type: switch
     is_visible:
-        label: Visible
+        label: octoshop.categories::lang.categories.isVisible
         type: switch
     description:
-        label: Description
+        label: octoshop.categories::lang.categories.description
         searchable: false
         invisible: true
