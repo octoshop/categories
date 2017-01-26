@@ -12,12 +12,12 @@ defaultRedirect: octoshop/categories/categories
 
 # Create page
 create:
-    title: <?= e(trans('octoshop.categories::lang.categories.title_create')) ?>
+    title: octoshop.categories::lang.categories.title_create
     redirect: octoshop/categories/categories/update/:id
     redirectClose: octoshop/categories/categories
 
 # Update page
 update:
-    title: <?= e(trans('octoshop.categories::lang.categories.title_update')) ?>
+    title: octoshop.categories::lang.categories.title_update
     redirect: octoshop/categories/categories
     redirectClose: octoshop/categories/categories

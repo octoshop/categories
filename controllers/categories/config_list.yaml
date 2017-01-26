@@ -5,7 +5,7 @@ list: $/octoshop/categories/models/category/columns.yaml
 modelClass: Octoshop\Categories\Models\Category
 
 # List Title
-title: <?= e(trans('octoshop.categories::lang.categories.title_list')) ?>
+title: octoshop.categories::lang.categories.title_list
 
 # Link URL for each record
 recordUrl: octoshop/categories/categories/update/:id
