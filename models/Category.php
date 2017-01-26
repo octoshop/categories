@@ -71,13 +71,6 @@ class Category extends Model
         'secondary_image' => ['System\Models\File'],
     ];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        +$this->setUrlPageName('browse.htm');
-    }
-
     public function afterFetch()
     {
         // Set the dummy is_subcategory value for the backend switch

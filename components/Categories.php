@@ -76,6 +76,8 @@ class Categories extends ComponentBase
     public function fillExtraData($categories, $rootCategory = true)
     {
         return $categories->each(function ($c) use ($rootCategory) {
+            $c->setUrlPageName($this->categoryPage);
+
             if (!$this->inheritChildCount) {
                 $c->productCount = count($c->products);
             } else {

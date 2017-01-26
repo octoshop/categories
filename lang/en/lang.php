@@ -38,8 +38,7 @@ return [
         'categoryPage' => 'Category page',
         'categoryPage_description' => 'The name of the page to use when generating category links.',
         'isPrimary' => 'Use for URLs?',
-        ''
-    ]
+    ],
     'product' => [
         'categories' => 'Categories',
         'category' => 'Category',
